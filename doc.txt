@@ -1,0 +1,8 @@
+run on server:
+- cd to chattrbox dir
+- npm run dev
+
+run on client
+- cd to chattrbox dir
+- npm run build
+npm run watch
