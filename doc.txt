@@ -5,4 +5,4 @@ run on server:
 run on client
 - cd to chattrbox dir
 - npm run build
-npm run watch
+- npm run watch
