@@ -11,7 +11,7 @@ const FORM_SELECTOR = "[data-chat='chat-form']";
 const INPUT_SELECTOR = "[data-chat='message-input']";
 const LIST_SELECTOR = "[data-chat='message-list']";
 
-let userStore = new UserStore('x-chattrbox/u');
+let userStore = new UserStore("x-chattrbox/u");
 let username = userStore.get();
 if (!username) {
   username = promptForUsername();
@@ -24,6 +24,7 @@ class ChatApp {
     this.chatList = new ChatList(LIST_SELECTOR, username);
 
     socket.init("ws://localhost:3001");
+
     socket.registerOpenHandler(() => {
       this.chatForm.init((data) => {
         let message = new ChatMessage({
@@ -33,13 +34,13 @@ class ChatApp {
       });
       this.chatList.init();
     });
+
     socket.registerMessageHandler((data) => {
       console.log(data);
       let message = new ChatMessage({
         message: data
       });
       this.chatList.drawMessage(message.serialize());
-      //console.log(message);
     });
   }
 }
