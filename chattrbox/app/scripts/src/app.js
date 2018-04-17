@@ -26,9 +26,9 @@ class ChatApp {
     socket.init("ws://localhost:3001");
 
     socket.registerOpenHandler(() => {
-      this.chatForm.init((data) => {
+      this.chatForm.init((text) => {
         let message = new ChatMessage({
-          message: data
+          message: text
         });
         socket.sendMessage(message.serialize());
       });
@@ -37,9 +37,7 @@ class ChatApp {
 
     socket.registerMessageHandler((data) => {
       console.log(data);
-      let message = new ChatMessage({
-        message: data
-      });
+      let message = new ChatMessage(data);
       this.chatList.drawMessage(message.serialize());
     });
   }
@@ -47,12 +45,12 @@ class ChatApp {
 
 class ChatMessage {
   constructor({
-    message: m,
     user: u = username,
+    message: m,
     timestamp: t = (new Date()).getTime()
   }) {
-    this.message = m;
     this.user = u;
+    this.message = m;
     this.timestamp = t;
   }
   serialize() {

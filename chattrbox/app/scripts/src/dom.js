@@ -36,8 +36,9 @@ export class ChatList {
 
   drawMessage({
     user: u,
-    timestamp: t,
-    message: m
+    message: m,
+    timestamp: t
+
   }) {
     let $messageRow = $("<li>", {
       "class": "message-row"
